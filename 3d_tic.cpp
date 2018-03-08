@@ -3,6 +3,9 @@
 *    Lesson 08, Tic-Tac-Toe
 * Summary: 
 *    This program reads, displays, and writes a Tic-Tac-Toe board
+* Authors:
+*    Tyler Christensen, Taft Christensen, Zach Hulse, David Harris,
+*    ,and Preston Taylor
 ************************************************************************/
 
 #include <iostream>
