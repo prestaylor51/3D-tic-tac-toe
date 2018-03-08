@@ -10,10 +10,10 @@
 #include <cassert>
 using namespace std;
 
-#define BOARD_SIZE 3
-#define PLAYER_X 'X'
-#define PLAYER_O 'O'
-#define BLANK '.'
+#define BOARD_SIZE 3 // NEW
+#define PLAYER_X 'X' // NEW
+#define PLAYER_O 'O' // NEW
+#define BLANK '.'    // NEW
 
 bool read(         char board[][BOARD_SIZE][BOARD_SIZE], const char* fileName);// MOD
 bool write(  const char board[][BOARD_SIZE][BOARD_SIZE], const char* fileName);// MOD
@@ -67,8 +67,8 @@ bool read(char board[][BOARD_SIZE][BOARD_SIZE], const char* fileName)// MOD
 
    // read 9 symbols, hopefully they are . X O
    for (int l = 0; l < BOARD_SIZE; l++) // NEW
-      for (int r = 0; r < BOARD_SIZE; r++)
-            for (int c = 0; c < BOARD_SIZE; c++)
+      for (int r = 0; r < BOARD_SIZE; r++) // MOD
+            for (int c = 0; c < BOARD_SIZE; c++) // MOD
             {
             fin >> board[l][r][c]; // MOD
             assert(!fin.fail());
@@ -97,8 +97,8 @@ bool write(const char board[][BOARD_SIZE][BOARD_SIZE], const char* fileName)// M
 
    // write my 9 symbols
    for (int l = 0; l < BOARD_SIZE; l++) // NEW
-      for (int r = 0; r < BOARD_SIZE; r++)
-            for (int c = 0; c < BOARD_SIZE; c++)  
+      for (int r = 0; r < BOARD_SIZE; r++) // MOD
+            for (int c = 0; c < BOARD_SIZE; c++)  // MOD
                   fout << board[r][c][l] << (c == 2 ? '\n' : ' ');// MOD
 
    // close it!
@@ -123,7 +123,7 @@ void display(const char board[][BOARD_SIZE][BOARD_SIZE])// MOD
             cout << "---+---+---\n";
 
             // now, on each row, do the column stuff
-            for (int c = 0; c < BOARD_SIZE; c++)
+            for (int c = 0; c < BOARD_SIZE; c++) // MOD
             {
             // display a space for the dot
             if (board[r][c][l] == BLANK) // MOD
@@ -139,10 +139,10 @@ void display(const char board[][BOARD_SIZE][BOARD_SIZE])// MOD
    }
 
    // display who won
-   if (didWin(board, PLAYER_X))
-      cout << PLAYER_X << " won!\n";
-   if (didWin(board, PLAYER_O))
-      cout << PLAYER_O << " won!\n";
+   if (didWin(board, PLAYER_X)) //MOD
+      cout << PLAYER_X << " won!\n"; // MOD
+   if (didWin(board, PLAYER_O)) // MOD
+      cout << PLAYER_O << " won!\n"; // MOD
    
    return;
 }
