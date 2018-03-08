@@ -102,7 +102,7 @@ bool write(const char board[][BOARD_SIZE][BOARD_SIZE], const char* fileName)// M
    for (int l = 0; l < BOARD_SIZE; l++) // NEW
       for (int r = 0; r < BOARD_SIZE; r++) // MOD
             for (int c = 0; c < BOARD_SIZE; c++)  // MOD
-                  fout << board[r][c][l] << (c == 2 ? '\n' : ' ');// MOD
+                  fout << board[l][r][c] << (c == 2 ? '\n' : ' ');// MOD
 
    // close it!
    fout.close();
@@ -129,10 +129,10 @@ void display(const char board[][BOARD_SIZE][BOARD_SIZE])// MOD
             for (int c = 0; c < BOARD_SIZE; c++) // MOD
             {
             // display a space for the dot
-            if (board[r][c][l] == BLANK) // MOD
+            if (board[l][r][c] == BLANK) // MOD
                   cout << "   ";
             else
-                  cout << " " << board[r][c][l] << " "; // MOD
+                  cout << " " << board[l][r][c] << " "; // MOD
 
             // end with a | or a newline
             cout << (c == 2 ? '\n' : '|');
@@ -157,16 +157,79 @@ void display(const char board[][BOARD_SIZE][BOARD_SIZE])// MOD
  *******************************************/
 bool didWin(const char board[][BOARD_SIZE][BOARD_SIZE], char turn)// MOD
 {
+   int count = 0;// NEW
    // vertical
+   for (int l = 0; l < 3; l++)// NEW
+      for (int r = 0; r < 3; r++)// NEW
+      {// NEW
+         count = 0;// NEW
+         for (int c = 0; c < 3; c++)// NEW
+         {// NEW
+            if (board[l][r][c] == turn)// NEW
+               count++;// NEW
+            if (count >= 3)// NEW
+               return true;// NEW
+         }// NEW
+      }// NEW
 
    // horizontal
-
+   for (int l = 0; l < 3; l++)// NEW
+      for (int c = 0; c < 3; c++)// NEW
+      {// NEW
+         count = 0;// NEW
+         for (int r = 0; r < 3; r++)// NEW
+         {// NEW
+            if (board[l][r][c] == turn)// NEW
+               count++;// NEW
+            if (count >= 3)// NEW
+               return true;// NEW
+         }// NEW
+      }// NEW
    // diagonal
+   for (int l = 0; l < 3; l++)// NEW
+   {// NEW
+      if (board[l][0][0] == turn && board[l][1][1] == turn && board[l][2][2] == turn)// NEW
+         return true;// NEW
+      if (board[l][2][0] == turn && board[l][1][1] == turn && board[l][1][2] == turn)// NEW
+         return true;// NEW
+   }
 
    // 3d vertical
+   for (int r = 0; r < 3; r++)// NEW
+      for (int c = 0; c < 3; c++)// NEW
+      {// NEW
+         count = 0;// NEW
+         for (int l = 0; l < 3; l++)// NEW
+         {// NEW
+            if (board[l][r][c] == turn)// NEW
+               count++;// NEW
+            if (count >= 3)// NEW
+               return true;// NEW
+         }// NEW
+      }// NEW
 
    // 3d horizontal
-
+   for (int c = 0; c < 3; c++)// NEW
+      for (int r = 0; r < 3; r++)// NEW
+      {// NEW
+         count = 0;// NEW
+         for (int l = 0; l < 3; l++)// NEW
+         {// NEW
+            if (board[l][r][c] == turn)// NEW
+               count++;// NEW
+            if (count >= 3)// NEW
+               return true;// NEW
+         }// NEW
+      }// NEW
    // 3d diagonal
+   if (board[0][0][0] == turn && board[1][1][1] == turn && board[2][2][2] == turn)// NEW
+      return true;// NEW
+   if (board[0][2][0] == turn && board[1][1][1] == turn && board[2][0][2] == turn)// NEW
+      return true;// NEW
+   if (board[0][0][2] == turn && board[1][1][1] == turn && board[2][2][0] == turn)// NEW
+      return true;// NEW
+   if (board[0][2][2] == turn && board[1][1][1] == turn && board[2][0][0] == turn)// NEW
+      return true; // NEW
+
    return false;
 }
