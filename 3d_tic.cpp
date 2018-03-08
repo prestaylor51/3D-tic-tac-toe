@@ -158,33 +158,33 @@ bool didWin(const char board[][BOARD_SIZE][BOARD_SIZE], char turn)// MOD
    // vertical
    for (int l = 0; l < 3; l++)// NEW
       for (int r = 0; r < 3; r++)// NEW
-      {// NEW
+      {
          count = 0;// NEW
          for (int c = 0; c < 3; c++)// NEW
-         {// NEW
+         {
             if (board[l][r][c] == turn)// NEW
                count++;// NEW
             if (count >= 3)// NEW
                return true;// NEW
-         }// NEW
-      }// NEW
+         }
+      }
 
    // horizontal
    for (int l = 0; l < 3; l++)// NEW
       for (int c = 0; c < 3; c++)// NEW
-      {// NEW
+      {
          count = 0;// NEW
          for (int r = 0; r < 3; r++)// NEW
-         {// NEW
+         {
             if (board[l][r][c] == turn)// NEW
                count++;// NEW
             if (count >= 3)// NEW
                return true;// NEW
-         }// NEW
-      }// NEW
+         }
+      }
    // diagonal
    for (int l = 0; l < 3; l++)// NEW
-   {// NEW
+   {
       if (board[l][0][0] == turn && board[l][1][1] == turn && board[l][2][2] == turn)// NEW
          return true;// NEW
       if (board[l][2][0] == turn && board[l][1][1] == turn && board[l][1][2] == turn)// NEW
@@ -194,30 +194,31 @@ bool didWin(const char board[][BOARD_SIZE][BOARD_SIZE], char turn)// MOD
    // 3d vertical
    for (int r = 0; r < 3; r++)// NEW
       for (int c = 0; c < 3; c++)// NEW
-      {// NEW
+      {
          count = 0;// NEW
          for (int l = 0; l < 3; l++)// NEW
-         {// NEW
+         {
             if (board[l][r][c] == turn)// NEW
                count++;// NEW
             if (count >= 3)// NEW
                return true;// NEW
-         }// NEW
-      }// NEW
+         }
+      }
 
    // 3d horizontal
    for (int c = 0; c < 3; c++)// NEW
       for (int r = 0; r < 3; r++)// NEW
-      {// NEW
+      {
          count = 0;// NEW
          for (int l = 0; l < 3; l++)// NEW
-         {// NEW
+         {
             if (board[l][r][c] == turn)// NEW
                count++;// NEW
             if (count >= 3)// NEW
                return true;// NEW
-         }// NEW
-      }// NEW
+         }
+      }
+      
    // 3d diagonal
    if (board[0][0][0] == turn && board[1][1][1] == turn && board[2][2][2] == turn)// NEW
       return true;// NEW
