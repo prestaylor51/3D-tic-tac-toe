@@ -11,6 +11,9 @@
 using namespace std;
 
 #define BOARD_SIZE 3
+#define X 'X'
+#define O 'O'
+#define BLANK '.'
 
 bool read(         char board[][BOARD_SIZE][BOARD_SIZE], const char* fileName);// MOD
 bool write(  const char board[][BOARD_SIZE][BOARD_SIZE], const char* fileName);// MOD
@@ -69,9 +72,9 @@ bool read(char board[][BOARD_SIZE][BOARD_SIZE], const char* fileName)// MOD
             {
             fin >> board[l][r][c]; // MOD
             assert(!fin.fail());
-            assert(board[l][r][c] == 'X' || // MOD
-                  board[l][r][c] == 'O' ||// MOD
-                  board[l][r][c] == '.');// MOD
+            assert(board[l][r][c] == X || // MOD
+                  board[l][r][c] == O ||// MOD
+                  board[l][r][c] == BLANK);// MOD
             }
 
    // close the file
@@ -123,7 +126,7 @@ void display(const char board[][BOARD_SIZE][BOARD_SIZE])// MOD
             for (int c = 0; c < BOARD_SIZE; c++)
             {
             // display a space for the dot
-            if (board[r][c][l] == '.') // MOD
+            if (board[r][c][l] == BLANK) // MOD
                   cout << "   ";
             else
                   cout << " " << board[r][c][l] << " "; // MOD
@@ -136,10 +139,10 @@ void display(const char board[][BOARD_SIZE][BOARD_SIZE])// MOD
    }
 
    // display who won
-   if (didWin(board, 'X'))
-      cout << "X won!\n";
-   if (didWin(board, 'O'))
-      cout << "O won!\n";
+   if (didWin(board, X))
+      cout << X << " won!\n";
+   if (didWin(board, O))
+      cout << O << " won!\n";
    
    return;
 }
