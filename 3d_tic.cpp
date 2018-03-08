@@ -11,8 +11,8 @@
 using namespace std;
 
 #define BOARD_SIZE 3
-#define X 'X'
-#define O 'O'
+#define PLAYER_X 'X'
+#define PLAYER_O 'O'
 #define BLANK '.'
 
 bool read(         char board[][BOARD_SIZE][BOARD_SIZE], const char* fileName);// MOD
@@ -72,8 +72,8 @@ bool read(char board[][BOARD_SIZE][BOARD_SIZE], const char* fileName)// MOD
             {
             fin >> board[l][r][c]; // MOD
             assert(!fin.fail());
-            assert(board[l][r][c] == X || // MOD
-                  board[l][r][c] == O ||// MOD
+            assert(board[l][r][c] == PLAYER_X || // MOD
+                  board[l][r][c] == PLAYER_O ||// MOD
                   board[l][r][c] == BLANK);// MOD
             }
 
@@ -139,10 +139,10 @@ void display(const char board[][BOARD_SIZE][BOARD_SIZE])// MOD
    }
 
    // display who won
-   if (didWin(board, X))
-      cout << X << " won!\n";
-   if (didWin(board, O))
-      cout << O << " won!\n";
+   if (didWin(board, PLAYER_X))
+      cout << PLAYER_X << " won!\n";
+   if (didWin(board, PLAYER_O))
+      cout << PLAYER_O << " won!\n";
    
    return;
 }
